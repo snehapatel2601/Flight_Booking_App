@@ -1,0 +1,30 @@
+<core:FragmentDefinition xmlns:form="sap.ui.layout.form"
+   xmlns="sap.m"
+   xmlns:core="sap.ui.core">
+   <Dialog id="addNewUser" title="Sign Up">
+        <form:SimpleForm >
+            <form:content>
+                <Label text="User Name"></Label>
+                <Input id="ipUserName" value=""></Input>
+                <Label text="Email"></Label>
+                <Input id="ipEmail" value="" type="Email"></Input>
+                <Label text="Password"></Label>
+                <Input id="ipPassword" value="" type="Password"></Input>
+                <Label text="Role"></Label>
+                 <RadioButtonGroup id="ipRole" columns="2">
+                    <buttons>
+                        <RadioButton text="Admin" />
+                        <RadioButton text="User" />
+                    </buttons>
+                </RadioButtonGroup>
+            </form:content>
+        </form:SimpleForm>
+
+        <beginButton>
+            <Button text="Submit" type="Emphasized" press="onSubmit"></Button>
+        </beginButton>
+        <endButton>
+            <Button text="Cancel" type="Reject" press="onCloseDialog"></Button>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

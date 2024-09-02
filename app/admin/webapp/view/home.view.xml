@@ -1,0 +1,24 @@
+
+<mvc:View controllerName="admin.flightbooking.controller.home"
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m"
+    xmlns:c="sap.ui.core"
+    displayBlock="true"
+    height="100%"
+    busyIndicatorDelay="0">
+    
+    <Page id="page" title="{i18n>title}">
+        <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+        header="Admin Page" 
+        subheader="Administrator" 
+        press="enterAdministrator" >
+        <TileContent>
+            <ImageContent src="sap-icon://my-view"></ImageContent>
+            
+        </TileContent>
+    </GenericTile>
+        <content />
+    </Page>
+
+  
+</mvc:View>

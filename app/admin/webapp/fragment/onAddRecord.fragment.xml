@@ -1,0 +1,31 @@
+<core:FragmentDefinition xmlns:form="sap.ui.layout.form"
+   xmlns="sap.m"
+   xmlns:core="sap.ui.core">
+   <Dialog id="addRecord" title="AddRecord">
+        <form:SimpleForm >
+            <form:content>
+                <Label text="FlightNumber"></Label>
+                <Input id="FlightNumber" value=""></Input>
+                <Label text="Source"></Label>
+                <Input id="Source" value=""></Input>
+                <Label text="Destination"></Label>
+                <Input id="Destination" value=""></Input>
+                <Label text="DepartureTime"></Label>
+                <Input id="DepartureTime" value=""></Input>
+                <Label text="ArrivalTime"></Label>
+                <Input id="ArrivalTime" value=""></Input>
+                <Label text="TicketPrice"></Label>
+                <Input id="TicketPrice" value=""></Input>
+                <Label text="Status"></Label>
+                <Input id="Status" value=""></Input>
+            </form:content>
+        </form:SimpleForm>
+
+        <beginButton>
+            <Button text="Submit" type="Emphasized" press="onSubmitAddRecord"></Button>
+        </beginButton>
+        <endButton>
+            <Button text="Cancel" type="Reject" press="onCloseDialog"></Button>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

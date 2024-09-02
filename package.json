@@ -1,0 +1,26 @@
+{
+  "name": "Flight_Booking",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@cap-js/hana": "^1",
+    "@sap/cds": "^8",
+    "bcrypt": "^5.1.1",
+    "csv-parser": "^3.0.0",
+    "express": "^4"
+  },
+  "devDependencies": {
+    "@cap-js/cds-types": "^0.6",
+    "@cap-js/sqlite": "^1",
+    "@sap/ux-specification": "^1.120.17"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "watch-flightbooking": "cds watch --open flightbooking/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-user": "cds watch --open user/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-login": "cds watch --open login/webapp/index.html?sap-ui-xx-viewCache=false"
+  }
+}

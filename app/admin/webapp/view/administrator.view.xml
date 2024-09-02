@@ -1,0 +1,86 @@
+<mvc:View controllerName="admin.flightbooking.controller.administrator"
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m"
+    xmlns:c="sap.ui.core"
+    displayBlock="true"
+    height="100%"
+    busyIndicatorDelay="0">
+    <Page id="page" title="{i18n>title}">
+        
+ <FlexBox justifyContent="End" class="sapUiTinyMargin Table" >
+         <Button text="Add Flight"  class="sapUiTinyMargin" press="onPressAddRecord" type="Emphasized"></Button>
+        <Button text="Update Flight Info"  class="sapUiTinyMargin" press="onPressUpdate" type="Attention"></Button>
+        <Button text="Delete Flight"  class="sapUiTinyMargin" press="onPressDelete" type="Reject"></Button>
+       </FlexBox>
+ 
+    <FlexBox class="sapUiTinyMargin Table" >
+        <Table id="flightTable" items="{/Flight}" mode="SingleSelectLeft" headerText="Flight Details" >
+
+        <columns>
+            <Column>
+                <Label text="FlightID"/>
+            </Column>
+            <Column>
+                <Label text="FlightNumber"/>
+            </Column>
+            <Column>
+                <Label text="Source"/>
+            </Column>
+            <Column>
+                <Label text="Destination"/>
+            </Column>
+            <Column>
+                <Label text="DepartureTime"/>
+            </Column>
+            <Column>
+                <Label text="ArrivalTime"/>
+            </Column>
+            <Column>
+                <Label text="TicketPrice"/>
+            </Column>
+            <Column>
+                <Label text="Status"/>
+            </Column>
+        </columns>
+        <items>
+            <ColumnListItem>
+                <cells>
+                    <Text text="{FlightID}"/>
+                </cells>
+                <cells>
+                    <Text text="{FlightNumber}"/>
+                </cells>
+                    <cells>
+                    <Text text="{Source}"/>
+                </cells>
+                    <cells>
+                    <Text text="{Destination}"/>
+                </cells>
+                <cells>
+                    <Text text="{DepartureTime}"/>
+                </cells>
+                    <cells>
+                    <Text text="{ArrivalTime}"/>
+                </cells>
+                    <cells>
+                    <Text text="{TicketPrice}"/>
+                </cells>
+                 <cells>
+                    <Text text="{Status}"/>
+                </cells>
+                 <!-- <cells>
+                            <ComboBox selectedKey="{Status}">
+                                <items>
+                                    <core:Item key="Scheduled" text="Scheduled" />
+                                    <core:Item key="Delayed" text="Delayed" />
+                                    <core:Item key="Cancelled" text="Cancelled" />
+                                </items>
+                            </ComboBox>
+                        </cells> -->
+            </ColumnListItem>
+        </items>
+    </Table>
+    </FlexBox>
+        <content />
+    </Page>
+</mvc:View>
