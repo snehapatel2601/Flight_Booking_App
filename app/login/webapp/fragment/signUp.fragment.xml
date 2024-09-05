@@ -5,15 +5,29 @@
         <form:SimpleForm >
             <form:content>
                 <Label text="User Name"></Label>
-                <Input id="ipUserName" value=""></Input>
+                <Input id="ipUserName" value="" required="true"></Input>
                 <Label text="Email"></Label>
-                <Input id="ipEmail" value="" type="Email"></Input>
+                <Input id="ipEmail" value="" type="Email" required="true"></Input>
                 <Label text="Password"></Label>
-                <Input id="ipPassword" value="" type="Password"></Input>
+                <Input id="ipPassword" value="" type="Password" required="true"></Input>
+                <Label text="Invite Code"></Label>
+                <HBox alignItems="Center">
+            <Input id="ipCode" 
+                   value="" 
+                   type="Password" 
+                   placeholder="Enter Code"
+                     class="inputWithMargin"/>
+            <CheckBox id="showCodeCheckbox" 
+                      text="Show Code" 
+                      select="onShowCodeToggle"
+                      class= "sapUiSmallMargin"/>
+        </HBox>
+                <Button text="Validate" type="Default" press="validateCode"></Button> 
+
                 <Label text="Role"></Label>
                  <RadioButtonGroup id="ipRole" columns="2">
                     <buttons>
-                        <RadioButton text="Admin" />
+                        <RadioButton id="adminRadioButton" text="Admin" visible="false" />
                         <RadioButton text="User" />
                     </buttons>
                 </RadioButtonGroup>

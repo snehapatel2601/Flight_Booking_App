@@ -1,0 +1,82 @@
+<mvc:View
+    controllerName="user.user.controller.bookFlight"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    displayBlock="true"
+    height="100%"
+    busyIndicatorDelay="0">
+    
+    <Page id="bookFlights" title="{i18n>title}">
+
+   <FlexBox
+    class="headerFlexBox"
+    direction="Row"
+    alignItems="Center"
+    justifyContent="SpaceBetween">
+
+    <!-- Title -->
+    <Title text="Available Flights" class="customTitle" level="H4"/>
+
+    <!-- Search Field -->
+    <FlexBox justifyContent="End" >
+        <Input id="sourceInput" type="Text" placeholder="Source" liveChange="livechangefrom"  ></Input>
+        <Text  text="to" class="sapUiTinyMargin"></Text>
+        <Input id="destinationInput" type="Text" placeholder="Destination" class="sapUiTinyMarginRight" liveChange="livechangeto" ></Input>
+        <Button type="Emphasized"  icon="sap-icon://search" class="sapUiTinyMarginBeginEnd" press="onSearch"></Button>
+    </FlexBox>
+    
+</FlexBox>
+        
+    <Table
+        id="flightTable"
+        items="{/Flight}"
+    >
+        
+        <columns>
+            <Column visible="false"> 
+                <Text text="Flight ID" />
+            </Column>
+            <Column visible="false"> 
+                <Text text="User ID" />
+            </Column>
+            <Column>
+                <Text text="Flight Number" />
+            </Column>
+            <Column>
+                <Text text="Source" />
+            </Column>
+            <Column>
+                <Text text="Destination" />
+            </Column>
+            <Column>
+                <Text text="Departure Time" />
+            </Column>
+            <Column>
+                <Text text="Arrival Time" />
+            </Column>
+            <Column>
+                <Text text="Ticket Price" />
+            </Column>
+            <Column>
+                <Text text="Book" />
+            </Column>
+        </columns>
+
+        <items>
+            <ColumnListItem>
+                <cells>
+                    <Text text="{FlightID}" />
+                    <Text text="{UserID}" />
+                    <Text text="{FlightNumber}" />
+                    <Text text="{Source}" />
+                    <Text text="{Destination}" />
+                    <Text text="{DepartureTime}" />
+                    <Text text="{ArrivalTime}" />
+                    <Text text="{TicketPrice}" />
+                    <Button text="Book Now" press="onBookNow" />
+                </cells>
+            </ColumnListItem>
+        </items>
+    </Table>
+    </Page>
+</mvc:View>

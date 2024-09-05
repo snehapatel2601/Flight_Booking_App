@@ -1,0 +1,43 @@
+<core:FragmentDefinition xmlns:form="sap.ui.layout.form"
+   xmlns="sap.m"
+   xmlns:core="sap.ui.core">
+   <Dialog id="addRecord" title="Fill Details">
+        <form:SimpleForm >
+            <form:content>
+                <Label text="Passenger Name"></Label>
+                <Input id="passengerName" placeholder="Enter Passenger Name" value="" required="true"></Input>
+                <Label text="Phone Number"></Label>
+                <Input id="phoneNumber" placeholder="Enter Phone Number" type="Tel" value="" required="true"></Input>
+                <Label text="Email"></Label>
+                <Input id="email" placeholder="Enter Email" type="Email"  value="" required="true"></Input>
+                <Label text="Gender"></Label>
+                <RadioButtonGroup id="genderRadioGroup" columns="2" >
+    <RadioButton text="Male" key="Male"/>
+    <RadioButton text="Female" key="Female"/>
+</RadioButtonGroup>
+                <Label text="Booking Date"></Label>
+                 <DatePicker 
+                 required="true"
+                id="bookingDate" 
+                placeholder="Select Booking Date" 
+                valueFormat="yyyy-MM-dd" 
+                displayFormat="long" 
+                change="onDateChange"/>
+                <Label text="Class"></Label>
+              <RadioButtonGroup id="classRadioGroup" columns="2">
+    <RadioButton text="Economy" key="Economy"/>
+    <RadioButton text="Business" key="Business"/>
+    <RadioButton text="Premium" key="Business"/>
+    <RadioButton text="First" key="Business"/>
+</RadioButtonGroup>
+            </form:content>
+        </form:SimpleForm>
+
+        <beginButton>
+            <Button text="Submit" type="Emphasized" press="onSubmitAddRecord"></Button>
+        </beginButton>
+        <endButton>
+            <Button text="Cancel" type="Reject" press="onCloseDialog"></Button>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

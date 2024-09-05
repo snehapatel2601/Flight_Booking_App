@@ -19,22 +19,27 @@
           <!-- Username Input -->
           <Input
             id="usernameInput"
-            placeholder="Username"
+            placeholder="Username *"
             width="100%"
             required="true"
             type="Text"
             valueLiveUpdate="true"
-            class="sapUiSmallMarginTop" />
+            class="sapUiSmallMarginTop"
+             />
           
           <!-- Password Input -->
           <Input
             id="passwordInput"
-            placeholder="Password"
+            placeholder="Password *"
             width="100%"
             required="true"
             type="Password"
             valueLiveUpdate="true"
             class="sapUiSmallMarginTop" />
+
+            <CheckBox id="showPasswordCheckbox" 
+                  text="Show Password" 
+                  select="onShowPasswordToggle"/>
           
           <!-- Login and Signup Buttons -->
           <HBox justifyContent="Center" width="100%" class="sapUiSmallMarginTop">

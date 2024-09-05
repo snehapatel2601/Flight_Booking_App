@@ -1,0 +1,72 @@
+<mvc:View controllerName="user.user.controller.BookHistory"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+
+    <Page id="bookingHistory" title="{i18n>title}">
+        <Title text="Your Booking History" level="H2" />
+       <HBox class="sapUiSmallMargin " width="100%" justifyContent="Inherit">
+
+        <Table
+            id="FlightTable"
+            inset="false"
+            items="{/Flight}">
+            
+            <!-- Define Columns for the Booking History -->
+            <columns>
+                <Column>
+                    <Text text="Flight Number" />
+                </Column>
+                <Column>
+                    <Text text="Source" />
+                </Column>
+                <Column>
+                    <Text text="Destination" />
+                </Column>
+            </columns>
+
+            <!-- Define the Items Template (Rows) -->
+            <items>
+                <ColumnListItem>
+                    <cells>
+                        <Text text="{FlightNumber}" />
+                        <Text text="{Source}" />
+                        <Text text="{Destination}" />
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+        <Table
+            id="bookingHistoryTable"
+            inset="false"
+            items="{/Booking}">
+            
+            <!-- Define Columns for the Booking History -->
+            <columns>
+                <Column>
+                    <Text text="Booking Order Number" />
+                </Column>
+                <Column>
+                    <Text text="Booking Date" />
+                </Column>
+                <Column>
+                    <Text text="Booking Status" />
+                </Column>
+            </columns>
+
+            <!-- Define the Items Template (Rows) -->
+            <items>
+                <ColumnListItem>
+                    <cells>
+                        <Text text="{BookingOrderNumber}" />
+                        <Text text="{BookingDate}" />
+                        <Text text="{BookingStatus}" />
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+    </HBox>
+        <!-- Table to Display Booking History -->
+
+        <content />
+    </Page>
+</mvc:View>

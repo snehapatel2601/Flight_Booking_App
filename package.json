@@ -8,6 +8,8 @@
   "dependencies": {
     "@cap-js/hana": "^1",
     "@sap/cds": "^8",
+    "@sap/cds-hana": "^2.0.0",
+    "@sap/xssec": "^4.2.2",
     "bcrypt": "^5.1.1",
     "csv-parser": "^3.0.0",
     "express": "^4"
@@ -15,6 +17,7 @@
   "devDependencies": {
     "@cap-js/cds-types": "^0.6",
     "@cap-js/sqlite": "^1",
+    "@sap/cds-dk": "^8",
     "@sap/ux-specification": "^1.120.17"
   },
   "scripts": {
@@ -22,5 +25,13 @@
     "watch-flightbooking": "cds watch --open flightbooking/webapp/index.html?sap-ui-xx-viewCache=false",
     "watch-user": "cds watch --open user/webapp/index.html?sap-ui-xx-viewCache=false",
     "watch-login": "cds watch --open login/webapp/index.html?sap-ui-xx-viewCache=false"
+  },
+  "cds": {
+    "requires": {
+      "[production]": {
+        "auth": "xsuaa"
+      },
+      "db": "hana"
+    }
   }
 }

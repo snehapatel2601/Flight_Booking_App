@@ -8,9 +8,16 @@
     <Page id="page" title="{i18n>title}">
         
  <FlexBox justifyContent="End" class="sapUiTinyMargin Table" >
-         <Button text="Add Flight"  class="sapUiTinyMargin" press="onPressAddRecord" type="Emphasized"></Button>
-        <Button text="Update Flight Info"  class="sapUiTinyMargin" press="onPressUpdate" type="Attention"></Button>
-        <Button text="Delete Flight"  class="sapUiTinyMargin" press="onPressDelete" type="Reject"></Button>
+         <Button text="Add Flight"  class="sapUiTinyMargin" press="onPressAddRecord" type="Emphasized" icon="sap-icon://travel-itinerary"></Button>
+        <Button text="Update Flight Info"  class="sapUiTinyMargin" press="onPressUpdate" type="Attention" icon="sap-icon://arrow-top"></Button>
+        <Button text="Delete Flight"  class="sapUiTinyMargin" press="onDeleteFlight" type="Reject" icon="sap-icon://delete"></Button>
+        <Button
+    id="restoreFlightButton"
+    text="Restore Flight"
+    class="sapUiTinyMargin"
+    type="Accept"
+    icon="sap-icon://redo"
+    press="onRestoreFlight"/>
        </FlexBox>
  
     <FlexBox class="sapUiTinyMargin Table" >
@@ -41,6 +48,9 @@
             <Column>
                 <Label text="Status"/>
             </Column>
+            <Column>
+                <Label text="Is Deleted" />
+            </Column>
         </columns>
         <items>
             <ColumnListItem>
@@ -67,6 +77,9 @@
                 </cells>
                  <cells>
                     <Text text="{Status}"/>
+                </cells>
+                 <cells>
+                    <Text text="{isDeleted}" />
                 </cells>
                  <!-- <cells>
                             <ComboBox selectedKey="{Status}">

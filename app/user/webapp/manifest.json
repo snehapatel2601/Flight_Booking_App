@@ -115,6 +115,20 @@
           "target": [
             "Targethome"
           ]
+        },
+        {
+          "name": "RouteBookFlight",
+          "pattern": "enterBookFlight",
+          "target": [
+            "TargetBookFlight"
+          ]
+        },
+        {
+          "name": "RouteBookHistory",
+          "pattern": "enterBookHistory",
+          "target": [
+            "TargetBookHistory"
+          ]
         }
       ],
       "targets": {
@@ -124,6 +138,20 @@
           "clearControlAggregation": false,
           "viewId": "home",
           "viewName": "home"
+        },
+        "TargetBookFlight": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "bookFlight",
+          "viewName": "bookFlight"
+        },
+        "TargetBookHistory": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "BookHistory",
+          "viewName": "BookHistory"
         }
       }
     },

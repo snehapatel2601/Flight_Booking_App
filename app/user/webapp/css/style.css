@@ -1,1 +1,25 @@
 /* Enter your custom styles here */
+.img{
+    background-size: 100%;
+    height: 1px;
+    width: 2px;
+}
+.customtoolbar{
+    background-color: #f0f0f0; /* Optional: Change the background color */
+    padding-left: 45%; /* Optional: Add some padding */
+}
+.headerFlexBox {
+    width: 100%; /* Full width */
+    height: 80px; /* Set a height for the header */
+    padding: 10px; /* Add some padding */
+    background-color: #f8f9fa; /* Optional: Light background color */
+}
+
+.customTitle {
+    font-size: 24px; /* Font size for the title */
+}
+
+#searchField {
+    margin-right: 20px; /* Adjust the margin to position the search field */
+}
+

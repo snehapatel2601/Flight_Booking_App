@@ -14,7 +14,17 @@ function (Controller,MessageToast,SimpleForm,Label,Dialog,Button,Input) {
         onInit: function () {
 
         },
-      
+        validateCode : function(){
+            let sCode = this.byId("ipCode").getValue();
+            if(sCode==="ADMIN01"){
+                MessageToast.show("Validated");
+                this.byId("adminRadioButton").setVisible(true);
+
+            }else{
+                MessageToast.show("Invalid");
+            }
+
+        },
         onSignUp : async function(){
             if (!this.oDialog) {
                 this.oDialog = await this.loadFragment({
@@ -25,43 +35,81 @@ function (Controller,MessageToast,SimpleForm,Label,Dialog,Button,Input) {
                 this.oDialog.open()
             }
         },
-        onSubmit :async function(){
+        onShowPasswordToggle: function(oEvent) {
+            // Get the CheckBox control
+            let oCheckBox = oEvent.getSource();
+            // Determine if the CheckBox is selected
+            let bChecked = oCheckBox.getSelected();
+            // Get the password input field
+            let oPasswordInput = this.byId("passwordInput");
+
+            // Toggle the type of the password input field
+            oPasswordInput.setType(bChecked ? "Text" : "Password");
+        },
+        onShowCodeToggle: function(oEvent) {
+            // Get the CheckBox control
+            let oCheckBox = oEvent.getSource();
+            // Determine if the CheckBox is selected
+            let bChecked = oCheckBox.getSelected();
+            // Get the password input field
+            let oPasswordInput = this.byId("ipCode");
+
+            // Toggle the type of the password input field
+            oPasswordInput.setType(bChecked ? "Text" : "Password");
+        },
+        onSubmit: async function() {
             try {
+                // Retrieve values from input fields
                 let sUserName = this.byId("ipUserName").getValue();
                 let sEmail = this.byId("ipEmail").getValue();
                 let sPassword = this.byId("ipPassword").getValue();
-                //let sRole = this.byId("ipRole").getValue();
                 let oRoleRadioGroup = this.byId("ipRole");
-        let sRole = oRoleRadioGroup.getSelectedButton() ? oRoleRadioGroup.getSelectedButton().getText() : null;
-      
-                // ye variables mai values jo user dale ga wo store ho jayega
-      
-                // upar wali values ko ek object mai store karenge jismai types db ke hisab bhejenge
+                let sRole = oRoleRadioGroup.getSelectedButton() ? oRoleRadioGroup.getSelectedButton().getText() : null;
+        
+                // Validate mandatory fields
+                if (!sUserName || !sEmail || !sPassword) {
+                    // Set value state for input fields to indicate required fields
+                    if (!sUserName) this.byId("ipUserName").setValueState("Error").setValueStateText("Username is required.");
+                    else this.byId("ipUserName").setValueState("None");
+                    
+                    if (!sEmail) this.byId("ipEmail").setValueState("Error").setValueStateText("Email is required.");
+                    else this.byId("ipEmail").setValueState("None");
+                    
+                    if (!sPassword) this.byId("ipPassword").setValueState("Error").setValueStateText("Password is required.");
+                    else this.byId("ipPassword").setValueState("None");
+                    
+                    MessageToast.show("Please fill in all mandatory fields.");
+                    return; // Exit the function to prevent further execution
+                }
+        
+                // If all mandatory fields are filled, prepare the data object
                 let signUp_data = {
                     UserName: sUserName,
                     Email: sEmail,
-                  Password: sPassword,
-                  Role: sRole,
-                 
-                }
-                console.log("signup data",signUp_data);
-                // This will close the dialog box after the click on submit button
-                this.onCloseDialog();
-      
-                // Getting model of the view
-                let oModel = this.getView().getModel();
-                // Bindlist is a method to post Data BindList(/pathname or entity)
-                let oBinding = oModel.bindList("/Users");
-                // Create is a function to add data into table
-                await oBinding.create(signUp_data);
-                MessageToast.show("succesfull submitted!")
-                oModel.refresh();
-      
-            } catch (error) {
-                MessageToast.show(error);
+                    Password: sPassword,
+                    Role: sRole
+                };
                 
+                console.log("signup data", signUp_data);
+        
+                // Close the dialog box
+                this.onCloseDialog();
+        
+                // Get the model of the view and create a new entry
+                let oModel = this.getView().getModel();
+                let oBinding = oModel.bindList("/Users");
+                await oBinding.create(signUp_data);
+        
+                // Show success message and refresh the model
+                MessageToast.show("Successfully submitted!");
+                oModel.refresh();
+        
+            } catch (error) {
+                // Show error message if something goes wrong
+                MessageToast.show("An error occurred: " + error.message);
             }
         },
+        
         onCloseDialog : function(){
             let oDialog = this.byId("addNewUser");
             oDialog.close();
@@ -69,12 +117,22 @@ function (Controller,MessageToast,SimpleForm,Label,Dialog,Button,Input) {
         },
         onLogin: async function () {
             try {
-                let oModel = this.getView().getModel();
-        
                 // Fetch input values
                 let sUserName = this.byId("usernameInput").getValue();
                 let sPassword = this.byId("passwordInput").getValue();
-                let sRole = this.byId("passwordInput").getValue();
+        
+                // Validate that username and password are not empty
+                if (!sUserName || !sPassword) {
+                    // Set value state for input fields to indicate required fields
+                    if (!sUserName) this.byId("usernameInput").setValueStateText("Username is required.");
+                    else this.byId("usernameInput").setValueState("None");
+        
+                    if (!sPassword) this.byId("passwordInput").setValueStateText("Password is required.");
+                    else this.byId("passwordInput").setValueState("None");
+        
+                    sap.m.MessageToast.show("Please enter both username and password.");
+                    return; // Exit the function to prevent further execution
+                }
         
                 // Define the filter for the query
                 let aFilters = [
@@ -82,45 +140,43 @@ function (Controller,MessageToast,SimpleForm,Label,Dialog,Button,Input) {
                     new sap.ui.model.Filter("Password", sap.ui.model.FilterOperator.EQ, sPassword)
                 ];
         
+                // Get the model of the view
+                let oModel = this.getView().getModel();
+                
                 // Bind the list with filters
                 let oBinding = oModel.bindList("/Users", undefined, undefined, aFilters);
-        
+                
                 // Request the contexts (i.e., the data)
                 let aContexts = await oBinding.requestContexts();
         
-                // Check if any user matched the criteria
-                // if (aContexts.length > 0) {
-                //     sap.m.MessageToast.show("Login successful!");
-                    
-                // } else {
-                //     sap.m.MessageToast.show("Invalid username or password.");
-                // }
-
                 if (aContexts.length > 0) {
                     let oUserData = aContexts[0].getObject(); // Get user data from the first result
-        
+                    
                     // Show success message toast
                     sap.m.MessageToast.show("Login successful!");
-        
-                    // Navigate to the appropriate page after a short delay
+                    
+                    // Define application URLs
+                    let sAdminAppUrl = "https://port4004-workspaces-ws-mv554.us10.trial.applicationstudio.cloud.sap/admin/webapp/index.html";
+                    let sUserAppUrl = "https://port4004-workspaces-ws-mv554.us10.trial.applicationstudio.cloud.sap/user/webapp/index.html";
+                    
+                    // Navigate to the appropriate application after a short delay
                     setTimeout(() => {
                         if (oUserData.Role === "Admin") {
-                            sap.ui.core.UIComponent.getRouterFor(this).navTo("adminPage"); // Navigate to Admin page
+                            window.location.href = sAdminAppUrl; // Navigate to Admin application
                         } else if (oUserData.Role === "User") {
-                            sap.ui.core.UIComponent.getRouterFor(this).navTo("userPage"); // Navigate to User page
+                            window.location.href = sUserAppUrl; // Navigate to User application
                         } else {
                             sap.m.MessageToast.show("Invalid role assigned.");
                         }
-                    }, 500); // Adjust delay if needed
+                    }, 10); // Adjust delay if needed
                 } else {
                     sap.m.MessageToast.show("Invalid username or password.");
                 }
-            
-
             } catch (oError) {
                 sap.m.MessageToast.show("Error: " + oError.message);
             }
         }
+        
         
     });
 });

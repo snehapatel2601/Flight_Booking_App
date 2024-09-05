@@ -9,25 +9,36 @@ entity Flight:managed{
     Destination : String(25);
     DepartureTime : String(20);
     ArrivalTime : String(20);
-    TicketPrice : Decimal;
+    TicketPrice : Integer;
     Status : String(25);
+    isDeleted:Boolean;
 }
 entity  Booking : managed {
     key BookingID : UUID;
     FlightID : Association to Flight;
-    UserID : String;  // or Association to User
-    PassengerName : String;
-    PassengerCount : Integer;
-    ContactInfo : String;
-    BookingDate : Timestamp;
+    UserID : Association to Users;
+     PassengerName : String;
+   PhoneNumber : String;
+   Email : String;
+    Gender: String;
+    BookingDate : Date;
+    Class : String;
     BookingStatus : String;
     BookingOrderNumber : String;
+   // PassengersDetails : array of PassengersDetails
 }
+// type PassengersDetails : {
+//     passengerName : String;
+//     age : Integer;
+//     gender : String;
+
+// };
+
  
 entity Users : managed {
     key UserID : UUID @Core.Computed;
     UserName : String;
-    Email : String;
+    key Email : String;
     Password : String;
     Role : String;  // Admin or User
 }
